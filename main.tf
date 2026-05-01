@@ -30,10 +30,11 @@ resource "aws_instance" "blog" {
   }
 }
 
-resource"aws_security_group" "blog"{
-  name       = "blog"
-  description = "web trafficing"
-
+resource "aws_security_group" "blog" {
+  name = "blog"
+  tags = {
+    Terraform = "true"
+  }
   vpc_id = data.aws_vpc.default.id
 }
 
