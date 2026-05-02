@@ -68,7 +68,7 @@ module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
 
   name    = "blog-alb"
-  vpc_id  = "module.blog_vpc.vpc_id"
+  vpc_id  = module.blog_vpc.vpc_id
   subnets =module.blog_vpc.public_subnets
 
   security_groups = [module.blog_sg.security_group_id]
@@ -102,7 +102,7 @@ module "blog_alb" {
       port     = 80
       protocol = "HTTP"
       forward = {
-        target_group_arn = aws_lb_targrt.group.blog.arn
+        target_group_arn = aws_lb_target.group.blog.arn
       }
     }
     
